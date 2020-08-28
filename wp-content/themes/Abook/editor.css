@@ -1,0 +1,33 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font:13px/1.6 'Century Gothic',Helvetica,'Microsoft Yahei','微软雅黑',Arial,sans-serif;
+	color: #3D3D3D;
+	
+}
+a { color: #587686; text-decoration: none; cursor:pointer; }
+a:hover { text-decoration: none; color:#587686;}
+p{word-wrap:break-word ;word-break:break-all;margin: 0 0 10px 0;}
+h3,h4,h5,h6{color: #fff;background:#F5B824;padding:0 5px;}
+ol, ul {list-style: none outside none;}
+.left, .alignleft { float: left; display: inline; }
+.right, .alignright { float: right; display: inline; }
+.clear{clear:both;}
+.hidden{display:none;}
+/*代码高亮*/
+pre,code,.copyright_info{clear:both;font-size:12px;background:#ffffe0;border:1px solid #e6db55;color:#666;padding:5px;margin:5px 0;}
+pre, code{display:block;overflow:auto;width:auto;font-family: "Deja Vu Sans Mono",Consolas,Monaco,"Courier New",Courier,monospace;line-height:20px;}
+
+
+img{
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px; 
+
+}
+#tinymce p{text-align: justify;margin: 0 0 10px 0;}
+#tinymce p a:link{color:#1BA0E1;}
+#tinymce p a:hover{color:#1BA0E1;border-bottom: 2px solid #1BA0E1;}
+#tinymce p img {padding: 6px;background: 0;}
