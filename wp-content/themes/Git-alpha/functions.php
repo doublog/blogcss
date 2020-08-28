@@ -1509,6 +1509,44 @@ function the_content_Jump($content)
 }
 add_filter('the_content','the_content_Jump',999);
 
+//WordPress纯代码实现代码高亮
+//Prism.js开始
+ function add_prism() {
+        wp_register_style(
+            'prismCSS', 
+             'https://cdn.jsdelivr.net/gh/doublog/blogcss/wp-content/themes/Git-alpha/prism.css' //自定义路径
+         );
+          wp_register_script(
+            'prismJS',
+            'https://cdn.jsdelivr.net/gh/doublog/blogcss/wp-content/themes/Git-alpha/prism.js' //自定义路径
+         );
+        wp_enqueue_style('prismCSS');
+        wp_enqueue_script('prismJS');
+    }
+add_action('wp_enqueue_scripts', 'add_prism');
+//Prism.js结束
+//编辑器添加快捷键
+function appthemes_add_quicktags() {
+?> 
+<script type="text/javascript"> 
+QTags.addButton( 'codeHighlight', '代码高亮', '\n<pre class="line-numbers"><code class="language-markup">\n HTML代码\n</code></pre>\n' );
+QTags.addButton( 'php', 'php', '\n<pre class="line-numbers"><code class="language-php">\n PHP代码\n</code></pre>\n' );
+QTags.addButton( 'python', 'Python', '\n<pre class="line-numbers"><code class="language-python">\n Python代码\n</code></pre>\n' );//注意：请将【】修改为<>
+</script>
+<?php
+}
+add_action('admin_print_footer_scripts', 'appthemes_add_quicktags' );
+//添加快捷键结束
+//Pre标签内的HTML不转义
+add_filter( 'the_content', 'pre_content_filter', 0 );
+function pre_content_filter( $content ) {
+    return preg_replace_callback( '|<pre.*><code.*>(.*)</code></pre>|isU' , 'convert_pre_entities', $content );
+}//注意：请将【】修改为<>
+
+function convert_pre_entities( $matches ) {
+    return str_replace( $matches[1], htmlentities( $matches[1] ), $matches[0] );
+}
+//END
 
 // 重定义评论者链接-加密并添加nofollow
 function redefine_comment_author_link() {
